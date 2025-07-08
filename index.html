@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كافيه أونلاين - طلب من الطاولة</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>مرحبًا بكم في كافيه أونلاين</h1>
+            <p>ادخل رقم الطاولة لبدء الطلب</p>
+        </header>
+
+        <div class="table-number-section">
+            <input type="number" id="tableNumber" placeholder="رقم الطاولة">
+            <button id="startOrderBtn">ابدأ الطلب</button>
+        </div>
+
+        <div class="menu-section hidden">
+            <h2 id="tableNumberDisplay"></h2>
+            <div class="menu-categories">
+                <button class="category-btn active" data-category="hot-drinks">المشروبات الساخنة</button>
+                <button class="category-btn" data-category="cold-drinks">المشروبات الباردة</button>
+                <button class="category-btn" data-category="food">الوجبات</button>
+                <button class="category-btn" data-category="desserts">الحلويات</button>
+            </div>
+
+            <div class="menu-items" id="menuItems">
+                <!-- سيتم ملؤها بواسطة JavaScript -->
+            </div>
+        </div>
+
+        <div class="order-section hidden">
+            <h2>طلباتك</h2>
+            <div class="order-items" id="orderItems">
+                <!-- سيتم ملؤها بواسطة JavaScript -->
+            </div>
+            <div class="order-actions">
+                <textarea id="orderNotes" placeholder="ملاحظات خاصة (اختياري)"></textarea>
+                <button id="submitOrderBtn">تأكيد الطلب</button>
+                <button id="cancelOrderBtn">إلغاء</button>
+            </div>
+        </div>
+
+        <div class="confirmation-section hidden">
+            <h2>شكرًا لطلبك!</h2>
+            <p>تم استلام طلبك وسيتم توصيله إلى طاولتك قريبًا.</p>
+            <button id="newOrderBtn">طلب جديد</button>
+        </div>
+    </div>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
