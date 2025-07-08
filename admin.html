@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كافيه أونلاين - لوحة التحكم</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <header>
+            <h1>لوحة تحكم كافيه أونلاين</h1>
+            <nav>
+                <button class="nav-btn active" data-section="orders">الطلبات</button>
+                <button class="nav-btn" data-section="menu">إدارة القائمة</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- قسم الطلبات -->
+            <section id="orders-section" class="admin-section">
+                <h2>الطلبات الحالية</h2>
+                <div class="filters">
+                    <select id="order-filter">
+                        <option value="all">جميع الطلبات</option>
+                        <option value="pending">قيد الانتظار</option>
+                        <option value="preparing">قيد التحضير</option>
+                        <option value="ready">جاهزة للتوصيل</option>
+                        <option value="completed">مكتملة</option>
+                    </select>
+                </div>
+                <div class="orders-list" id="ordersList">
+                    <!-- سيتم ملؤها بواسطة JavaScript -->
+                </div>
+            </section>
+
+            <!-- قسم إدارة القائمة -->
+            <section id="menu-section" class="admin-section hidden">
+                <h2>إدارة القائمة</h2>
+                
+                <div class="menu-management">
+                    <div class="menu-categories">
+                        <h3>فئات القائمة</h3>
+                        <div class="categories-list" id="categoriesList">
+                            <!-- سيتم ملؤها بواسطة JavaScript -->
+                        </div>
+                        <button id="addCategoryBtn">إضافة فئة جديدة</button>
+                    </div>
+                    
+                    <div class="menu-items">
+                        <h3>عناصر القائمة</h3>
+                        <div class="items-list" id="itemsList">
+                            <!-- سيتم ملؤها بواسطة JavaScript -->
+                        </div>
+                        <button id="addItemBtn">إضافة عنصر جديد</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- نماذج (مودال) للتعديل والإضافة -->
+    <div id="orderModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>تفاصيل الطلب</h3>
+            <div id="orderDetails">
+                <!-- سيتم ملؤها بواسطة JavaScript -->
+            </div>
+            <div class="order-status">
+                <label>حالة الطلب:</label>
+                <select id="orderStatus">
+                    <option value="pending">قيد الانتظار</option>
+                    <option value="preparing">قيد التحضير</option>
+                    <option value="ready">جاهزة للتوصيل</option>
+                    <option value="completed">مكتملة</option>
+                </select>
+            </div>
+            <button id="updateOrderBtn">تحديث الحالة</button>
+        </div>
+    </div>
+
+    <div id="categoryModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="categoryModalTitle">إضافة فئة جديدة</h3>
+            <div class="form-group">
+                <label for="categoryName">اسم الفئة:</label>
+                <input type="text" id="categoryName" required>
+            </div>
+            <button id="saveCategoryBtn">حفظ</button>
+        </div>
+    </div>
+
+    <div id="itemModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="itemModalTitle">إضافة عنصر جديد</h3>
+            <div class="form-group">
+                <label for="itemCategory">الفئة:</label>
+                <select id="itemCategory">
+                    <!-- سيتم ملؤها بواسطة JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="itemName">اسم العنصر:</label>
+                <input type="text" id="itemName" required>
+            </div>
+            <div class="form-group">
+                <label for="itemPrice">السعر (جنيه):</label>
+                <input type="number" id="itemPrice" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="itemDescription">الوصف (اختياري):</label>
+                <textarea id="itemDescription"></textarea>
+            </div>
+            <button id="saveItemBtn">حفظ</button>
+        </div>
+    </div>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
